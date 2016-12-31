@@ -6,6 +6,13 @@ class Note(db.Model):
     longitude = db.Column(db.Float)
     latitude = db.Column(db.Float)
 
+    def jsonify(self):
+        return {
+            'text': self.text,
+            'longitude': self.longitude,
+            'latitude': self.latitude,
+        }
+
     def __init__(self, text, longitude, latitude):
         self.text = text
         self.longitude = longitude
