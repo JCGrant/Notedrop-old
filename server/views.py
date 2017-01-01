@@ -28,6 +28,15 @@ def new_note():
     return json.dumps(new_note.jsonify())
 
 
+@app.route('/notes/<int:id>', methods=['PUT'])
+def edit_note(id):
+    text = request.form.get('text')
+    note = Note.query.get(id)
+    note.text = text
+    db.session.commit()
+    return json.dumps(note.jsonify())
+
+
 @app.route('/notes/<int:id>', methods=['DELETE'])
 def delete_note(id):
     note = Note.query.get(id)
