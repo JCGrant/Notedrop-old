@@ -1,4 +1,4 @@
-from server import app
+from server import app, db
 from .models import Note
 from flask import request
 import json
@@ -15,3 +15,14 @@ def get_nearby_notes():
         (note.latitude - latitude) ** 2 <=
         NEARBY_DISTANCE ** 2]
     return json.dumps([note.jsonify() for note in notes])
+
+
+@app.route('/notes', methods=['POST'])
+def new_note():
+    text = request.form.get('text')
+    longitude = float(request.form.get('longitude'))
+    latitude = float(request.form.get('latitude'))
+    new_note = Note(text, longitude, latitude)
+    db.session.add(new_note)
+    db.session.commit()
+    return json.dumps(new_note.jsonify())
