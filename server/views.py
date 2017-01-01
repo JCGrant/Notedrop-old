@@ -26,3 +26,11 @@ def new_note():
     db.session.add(new_note)
     db.session.commit()
     return json.dumps(new_note.jsonify())
+
+
+@app.route('/notes/<int:id>', methods=['DELETE'])
+def delete_note(id):
+    note = Note.query.get(id)
+    db.session.delete(note)
+    db.session.commit()
+    return json.dumps(200)
