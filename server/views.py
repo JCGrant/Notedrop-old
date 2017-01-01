@@ -5,10 +5,8 @@ import json
 
 NEARBY_DISTANCE = 0.001
 
-@app.route('/notes', methods=['GET'])
-def get_nearby_notes():
-    longitude = float(request.args.get('longitude'))
-    latitude = float(request.args.get('latitude'))
+@app.route('/notes/<float:longitude>/<float:latitude>', methods=['GET'])
+def get_nearby_notes(longitude, latitude):
     all_notes = Note.query.all()
     notes = [note for note in all_notes if
         (note.longitude - longitude) ** 2 +
