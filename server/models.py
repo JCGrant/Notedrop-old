@@ -8,6 +8,7 @@ class Note(db.Model):
 
     def jsonify(self):
         return {
+            'id': self.id,
             'text': self.text,
             'longitude': self.longitude,
             'latitude': self.latitude,
