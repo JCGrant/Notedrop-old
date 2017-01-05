@@ -1,9 +1,13 @@
 from server import app, db
 from .models import Note
-from flask import request
+from flask import request, render_template
 import json
 
 NEARBY_DISTANCE = 0.001
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/notes/<float:longitude>/<float:latitude>', methods=['GET'])
 def get_nearby_notes(longitude, latitude):
