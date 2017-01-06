@@ -16,7 +16,10 @@ export default class Map extends Component {
         zoom={zoom}
         options={{
           maxZoom: zoom,
-          minZoom: zoom
+          minZoom: zoom,
+          draggable: false,
+          keyboardShortcuts: false,
+          disableDefaultUI: true
         }}>
       </GoogleMap>
     );
