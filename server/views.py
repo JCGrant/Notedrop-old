@@ -9,8 +9,8 @@ NEARBY_DISTANCE = 0.001
 def home():
     return render_template('index.html')
 
-@app.route('/notes/<float:longitude>/<float:latitude>', methods=['GET'])
-def get_nearby_notes(longitude, latitude):
+@app.route('/notes/<float:latitude>/<float:longitude>', methods=['GET'])
+def get_nearby_notes(latitude, longitude):
     all_notes = Note.query.all()
     notes = [note for note in all_notes if
         (note.longitude - longitude) ** 2 +
