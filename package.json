@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.5",
+    "google-map-react": "^0.22.3",
     "react": "^15.3.0",
     "react-dom": "^15.3.0"
   },
