@@ -48,7 +48,7 @@ class App extends Component {
     }
     return (
       <div style={style}>
-        <Map center={this.state.location} />
+        <Map center={this.state.location} markers={this.state.notes} />
       </div>
     );
   }
