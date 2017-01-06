@@ -12,7 +12,7 @@ export default class Map extends Component {
     return (
        <GoogleMap
         bootstrapURLKeys={{key: 'AIzaSyAXrpAfAJS8tyfTm-huImT3kRbyQOhuQ8M'}}
-        center={[51.499, -0.172]}
+        center={this.props.center}
         zoom={zoom}
         options={{
           maxZoom: zoom,

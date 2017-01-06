@@ -5,25 +5,40 @@ import './style.scss';
 import Map from './Map';
 
 
-const getLocation = () => {
-  // Temporary hardcoded location
-  return '51.499/-0.172';
-};
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
       notes: [],
+      location: []
     };
   }
 
-  componentDidMount() {
-    fetch('/notes/' + getLocation())
+  onPositionUpdate = (position) => {
+  console.log("Updating position");
+    const {latitude, longitude} = position.coords;
+    this.setState({
+      location: [latitude, longitude]
+    });
+    fetch('/notes/' + latitude + '/' + longitude)
       .then((response) => response.json())
       .then((notes) => {
-        this.setState({notes})
+        this.setState({notes});
       });
+  };
+
+  componentDidMount() {
+    this.watchId = navigator.geolocation.watchPosition(this.onPositionUpdate,
+    () => {},
+    {
+      enableHighAccuracy: true,
+      maximumAge        : 30000,
+      timeout           : 27000
+    });
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
   }
 
   render() {
@@ -33,7 +48,7 @@ class App extends Component {
     }
     return (
       <div style={style}>
-        <Map />
+        <Map center={this.state.location} />
       </div>
     );
   }
