@@ -17,10 +17,32 @@ const markerStyle = {
 };
 
 
+const USER_MARKER_RADIUS = 10;
+
+const userMarkerStyle = {
+  position: 'absolute',
+  width: USER_MARKER_RADIUS,
+  height: USER_MARKER_RADIUS,
+  left: -USER_MARKER_RADIUS / 2,
+  top: -USER_MARKER_RADIUS / 2,
+
+  border: '1px solid white',
+  borderRadius: USER_MARKER_RADIUS,
+  backgroundColor: '#5cd0fc'
+};
+
+
 const Marker = (props) => {
   return (
      <div style={markerStyle}></div>
   );
+};
+
+
+const UserMarker = (props) => {
+  return (
+    <div style={userMarkerStyle}></div>
+  )
 };
 
 
@@ -31,6 +53,10 @@ export default class Map extends Component {
 
   render() {
     const zoom = 18;
+    const userMarkerProps = {
+      lat: this.props.center[0],
+      lng: this.props.center[1]
+    }
     return (
        <GoogleMap
         bootstrapURLKeys={{key: 'AIzaSyAXrpAfAJS8tyfTm-huImT3kRbyQOhuQ8M'}}
@@ -51,6 +77,7 @@ export default class Map extends Component {
           };
           return <Marker key={i} {...markerProps} />
         })}
+        <UserMarker {...userMarkerProps}/>
       </GoogleMap>
     );
   }
