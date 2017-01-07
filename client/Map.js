@@ -58,6 +58,10 @@ export default class Map extends Component {
     super();
   }
 
+  onChildClick = (key, childProps) => {
+    console.log(key, childProps);
+  };
+
   render() {
     const zoom = 18;
     const userMarkerProps = {
@@ -69,6 +73,7 @@ export default class Map extends Component {
         bootstrapURLKeys={{key: 'AIzaSyAXrpAfAJS8tyfTm-huImT3kRbyQOhuQ8M'}}
         center={this.props.center}
         zoom={zoom}
+        onChildClick={this.onChildClick}
         options={{
           maxZoom: zoom,
           minZoom: zoom,
