@@ -16,6 +16,12 @@ const markerStyle = {
   backgroundColor: 'white'
 };
 
+const markerHoverStyle = {
+  ...markerStyle,
+  border: '2px solid white',
+  cursor: 'pointer'
+};
+
 
 const USER_MARKER_RADIUS = 10;
 
@@ -33,8 +39,9 @@ const userMarkerStyle = {
 
 
 const Marker = (props) => {
+  const style = props.$hover ? markerHoverStyle : markerStyle;
   return (
-     <div style={markerStyle}></div>
+     <div style={style}></div>
   );
 };
 
