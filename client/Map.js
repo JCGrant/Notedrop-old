@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GoogleMap from 'google-map-react';
+import Tooltip from 'rc-tooltip';
 
 
 const MARKER_RADIUS = 40;
@@ -41,7 +42,13 @@ const userMarkerStyle = {
 const Marker = (props) => {
   const style = props.$hover ? markerHoverStyle : markerStyle;
   return (
-     <div style={style}></div>
+    <Tooltip
+      animation="zoom"
+      trigger="click"
+      overlay={<span>{props.text}</span>}
+    >
+      <div style={style}></div>
+    </Tooltip>
   );
 };
 
